@@ -5,7 +5,8 @@ var audioBuffer;
 
 function main(){
 	// SOUND INIT
-	// window.addEventListener('mousedown', initSound);
+	//Remove overlay
+	removeOverlay();
   // window.addEventListener('mousedown', playThunderSound);
   window.addEventListener('load', playThunderSound);
 
