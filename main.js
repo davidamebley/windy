@@ -6,7 +6,8 @@ var audioBuffer;
 function main(){
 	// SOUND INIT
 	// window.addEventListener('mousedown', initSound);
-  window.addEventListener('mousedown', playThunderSound);
+  // window.addEventListener('mousedown', playThunderSound);
+  window.addEventListener('load', playThunderSound);
 
 	// ANIMATION
 	setInterval(drawScene, 200);//Draw Scene every 200millis
