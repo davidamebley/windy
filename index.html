@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>
+		Windy Evening
+		</title>
+		<link rel="stylesheet" href="main.css"></link>
+		<script src="main.js"></script>
+		<script>
+			function removeOverlay(){
+				//Make pre text overlay disappear
+				let element = document.getElementById("overlay");
+				element.style.display = "none";
+			}
+		</script>
+	</head>
+	<body onload="main()">
+		<canvas id="myCanvas"></canvas>
+<pre id="overlay" onclick="removeOverlay()">
+<b>Drawing on the Canvas
+HTML Canvas, CSS and Javascript
+</b>
+
+</pre>
+	</body>
+</html>
