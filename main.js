@@ -1,11 +1,15 @@
 const SIZE = 1000;
+var audioCtx;
+var audioBuffer;
+
 
 function main(){
-	removeOverlay();
-	
-	// drawScene();
+	// SOUND INIT
+	// window.addEventListener('mousedown', initSound);
+  window.addEventListener('mousedown', playThunderSound);
+
 	// ANIMATION
-	setInterval(drawScene, 200);//Draw Scene every 100millis
+	setInterval(drawScene, 200);//Draw Scene every 200millis
 }
 
 function drawScene(){
@@ -51,20 +55,35 @@ function drawScene(){
 	//House
 	drawHouse(ctx, [SIZE*0.34,SIZE*0.8], SIZE*0.4, properties);
 
-
-
 	//Adding more grass
 	drawMultipleGrass(ctx,-1.2,0.4,-1.22,0.3,-1.25,0.35,-1.2,0.4,-1.19,0.3,-1.18,0.35,2,12);
-
-	//Adding mountains
-	// drawMountains(ctx, [SIZE*0.5,SIZE*0.8], SIZE*0.4);
 	
+}
+
+// ************************AUDIO STUFF***********
+function playThunderSound(){
+	var audio = new Audio('https://bit.ly/3ESOaAa');
+  //Play audio continuosly
+  if (typeof audio.loop == 'boolean')
+  {
+      audio.loop = true;
+  }
+  else
+  {
+      audio.addEventListener('ended', function() {
+          this.currentTime = 0;
+          this.play();
+      }, false);
+  }
+  audio.play();
+
 }
 
 
 // Giving our work some nice background
 function drawBackground(ctx){
 	//Sky
+	ctx.save();
 	ctx.beginPath();
 	ctx.fillStyle = getSkyColor();
 	ctx.rect(0,0,SIZE,SIZE*0.5);
@@ -72,9 +91,15 @@ function drawBackground(ctx){
 
 	//Ground/Grass
 	ctx.beginPath();
-	ctx.fillStyle = "green";
+	//Change grass bg color based on sky color
+	if(getSkyColor() != "dark"){
+		ctx.fillStyle = "green";
+	}else{
+		ctx.fillStyle = "rgba(0,50,0,1)";
+	}
 	ctx.rect(0,SIZE*0.5,SIZE,SIZE*0.5);
 	ctx.fill();
+	ctx.restore();
 }
 //Creating sky color
 function getSkyColor(){
@@ -282,7 +307,12 @@ function drawTree1(ctx, location, scale, properties){//Scale specifies the size 
 	ctx.rotate((Math.random()-0.5)*0.7);
 
 	//Top/Leaves of tree
-	ctx.fillStyle="rgba(0,255,0,1)";
+	//Changing color shade based on sky color
+	if(getSkyColor() !== "dark"){
+		ctx.fillStyle = "rgba(0,255,0,1)";
+	}else{
+		ctx.fillStyle = "rgba(0,50,0,1)";
+	}
 	ctx.beginPath();
 	ctx.moveTo(-0.2,-0.0);
 	ctx.lineTo(+0.2,-0.0);
@@ -316,7 +346,12 @@ function drawTree2(ctx, location, scale, properties){//Scale specifies the size 
 	ctx.rotate((Math.random()-0.5)*0.7);
 
 	//Top/Leaves of tree
-	ctx.fillStyle="rgba(0,255,0,1)";
+	//Changing color shade based on sky color
+	if(getSkyColor() != "dark"){
+		ctx.fillStyle = "rgba(0,255,0,1)";
+	}else{
+		ctx.fillStyle = "rgba(0,50,0,1)";
+	}
 	ctx.beginPath();
 	ctx.moveTo(-0.2,-0.0);
 	ctx.lineTo(+0.2,-0.0);
@@ -350,7 +385,12 @@ function drawTree3(ctx, location, scale, properties){//Scale specifies the size 
 	ctx.rotate((Math.random()-0.5)*0.7);
 
 	//Top/Leaves of tree
-	ctx.fillStyle="rgba(0,255,0,1)";
+	//Changing color shade based on sky color
+	if(getSkyColor() != "dark"){
+		ctx.fillStyle = "rgba(0,255,0,1)";
+	}else{
+		ctx.fillStyle = "rgba(0,50,0,1)";
+	}
 	ctx.beginPath();
 	ctx.moveTo(-0.2,-0.0);
 	ctx.lineTo(+0.2,-0.0);
