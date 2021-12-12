@@ -5,10 +5,8 @@ var audioBuffer;
 
 function main(){
 	// SOUND INIT
-	//Remove overlay
-	removeOverlay();
-  // window.addEventListener('mousedown', playThunderSound);
-  window.addEventListener('load', playThunderSound);
+  //Play Thunder sound after mouse click
+	window.addEventListener('mousedown', playThunderSound);
 
 	// ANIMATION
 	setInterval(drawScene, 200);//Draw Scene every 200millis
